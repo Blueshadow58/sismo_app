@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sismo_app/Earthquake/model/earthquake_model.dart';
 
 class EarthquakeCard extends StatelessWidget {
-  final EarthquakeModel earthquake;
+  final Events earthquake;
 
   const EarthquakeCard({
     Key? key,
@@ -15,11 +15,11 @@ class EarthquakeCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(
         bottom: 20,
-        left: 20,
-        right: 20,
+        // left: 20,
+        // right: 20,
       ),
       height: 100,
-      width: 300,
+      width: 320,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
@@ -39,14 +39,19 @@ class EarthquakeCard extends StatelessWidget {
             width: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              image: const DecorationImage(
-                image: NetworkImage('https://picsum.photos/200/300'),
-                fit: BoxFit.cover,
+            ),
+            child: Center(
+              child: Text(
+                "${earthquake.magnitude?['value']}",
+                style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 120),
+            margin: const EdgeInsets.only(left: 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [

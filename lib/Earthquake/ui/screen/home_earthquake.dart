@@ -33,7 +33,7 @@ class HomeEarthquakeState extends State<HomeEarthquake> {
 
   Widget _buildListEarthquake() {
     return Container(
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8),
       child: BlocProvider(
         create: (_) => _earthquakeBloc,
         child: BlocListener<EarthquakeBloc, EarthquakeState>(
@@ -53,7 +53,8 @@ class HomeEarthquakeState extends State<HomeEarthquake> {
               } else if (state is EarthquakeLoading) {
                 return _buildLoading();
               } else if (state is EarthquakeLoaded) {
-                return _buildCard(context, state.earthquakeModel);
+                // return _buildCard(context, state.earthquakeModel);
+                return EarthquakeCardList(earthquake: state.earthquakeModel);
               } else if (state is EarthquakeError) {
                 return Container();
               } else {
@@ -73,7 +74,7 @@ class HomeEarthquakeState extends State<HomeEarthquake> {
       itemBuilder: (context, index) {
         print(model.events![index].magnitude?['value']);
         return Container(
-          margin: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.only(top: 8, left: 10, right: 10),
           child: Card(
             child: Container(
               margin: const EdgeInsets.all(8.0),

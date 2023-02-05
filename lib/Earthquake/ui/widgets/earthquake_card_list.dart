@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sismo_app/Earthquake/model/earthquake_model.dart';
+import 'package:sismo_app/Earthquake/ui/widgets/earthquake_card.dart';
 
 class EarthquakeCardList extends StatelessWidget {
-  final EarthquakeModel model;
-  const EarthquakeCardList({Key? key, required this.model}) : super(key: key);
+  final EarthquakeModel earthquake;
+  const EarthquakeCardList({Key? key, required this.earthquake})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,25 +14,17 @@ class EarthquakeCardList extends StatelessWidget {
         top: 20,
       ),
       child: ListView.builder(
-        itemCount: model.events!.length,
+        itemCount: earthquake.events!.length,
         itemBuilder: (context, index) {
-          var event = model.events![index];
-          return Container(
-            margin: const EdgeInsets.all(8.0),
-            child: Card(
-              child: Container(
-                margin: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text("Magnitud ${event.magnitude}"),
-                    Text("Profundidad: ${event.depth}"),
-                    Text("Fecha: ${event.utcDate}"),
-
-                    // Text("Url: ${model.events![index].url}"),
-                  ],
-                ),
-              ),
-            ),
+          var event = earthquake.events![index];
+          return Column(
+            children: <Widget>[
+              // Text("Magnitud ${event.magnitude}"),
+              // Text("Profundidad: ${event.depth}"),
+              // Text("Fecha: ${event.utcDate}"),
+              EarthquakeCard(earthquake: event)
+              // Text("Url: ${model.events![index].url}"),
+            ],
           );
         },
       ),
