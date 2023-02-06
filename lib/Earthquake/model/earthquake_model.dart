@@ -42,7 +42,7 @@ class Events {
   double? latitude;
   double? longitude;
   int? depth;
-  Map<String, dynamic>? magnitude;
+  Magnitude? magnitude;
   String? geoReference;
 
   Events(
@@ -69,7 +69,11 @@ class Events {
     // put an object in the model
     // magnitude = json['magnitude'] != null ? json['id'] : json['url'];
     if (json['magnitude'] != null) {
-      magnitude = json['magnitude'];
+      // if value is int change to double
+      if (json['magnitude']['value'] is int) {
+        json['magnitude']['value'] = json['magnitude']['value'].toDouble();
+      }
+      magnitude = Magnitude.fromJson(json['magnitude']);
     }
 
     // magnitude = Magnitude.fromJson(json['magnitude']);

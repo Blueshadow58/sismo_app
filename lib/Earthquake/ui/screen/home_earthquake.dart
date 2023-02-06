@@ -26,14 +26,14 @@ class HomeEarthquakeState extends State<HomeEarthquake> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sismo App')),
       body: _buildListEarthquake(),
     );
   }
 
   Widget _buildListEarthquake() {
     return Container(
-      margin: const EdgeInsets.all(8),
+      color: Colors.blueGrey,
+      // margin: const EdgeInsets.all(8),
       child: BlocProvider(
         create: (_) => _earthquakeBloc,
         child: BlocListener<EarthquakeBloc, EarthquakeState>(
@@ -72,7 +72,7 @@ class HomeEarthquakeState extends State<HomeEarthquake> {
     return ListView.builder(
       itemCount: model.events!.length,
       itemBuilder: (context, index) {
-        print(model.events![index].magnitude?['value']);
+        print(model.events![index].magnitude?.value);
         return Container(
           margin: const EdgeInsets.only(top: 8, left: 10, right: 10),
           child: Card(
@@ -94,5 +94,8 @@ class HomeEarthquakeState extends State<HomeEarthquake> {
     );
   }
 
-  Widget _buildLoading() => const Center(child: CircularProgressIndicator());
+  Widget _buildLoading() => const Center(
+          child: CircularProgressIndicator(
+        color: Colors.white,
+      ));
 }

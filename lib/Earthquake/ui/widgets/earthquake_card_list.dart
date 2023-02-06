@@ -9,25 +9,21 @@ class EarthquakeCardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(
-        top: 20,
-      ),
-      child: ListView.builder(
-        itemCount: earthquake.events!.length,
-        itemBuilder: (context, index) {
-          var event = earthquake.events![index];
-          return Column(
-            children: <Widget>[
-              // Text("Magnitud ${event.magnitude}"),
-              // Text("Profundidad: ${event.depth}"),
-              // Text("Fecha: ${event.utcDate}"),
-              EarthquakeCard(earthquake: event)
-              // Text("Url: ${model.events![index].url}"),
-            ],
-          );
-        },
-      ),
+    return ListView.builder(
+      padding: const EdgeInsets.only(top: 20),
+      itemCount: earthquake.events!.length,
+      itemBuilder: (context, index) {
+        var event = earthquake.events![index];
+        return Column(
+          children: <Widget>[
+            // Text("Magnitud ${event.magnitude}"),
+            // Text("Profundidad: ${event.depth}"),
+            // Text("Fecha: ${event.utcDate}"),
+            EarthquakeCard(earthquake: event)
+            // Text("Url: ${model.events![index].url}"),
+          ],
+        );
+      },
     );
   }
 }
