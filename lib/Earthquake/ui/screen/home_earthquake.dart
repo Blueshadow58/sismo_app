@@ -67,33 +67,6 @@ class HomeEarthquakeState extends State<HomeEarthquake> {
     );
   }
 
-  Widget _buildCard(BuildContext context, EarthquakeModel model) {
-    // return EarthquakeCardList(model: model);
-    return ListView.builder(
-      itemCount: model.events!.length,
-      itemBuilder: (context, index) {
-        print(model.events![index].magnitude?.value);
-        return Container(
-          margin: const EdgeInsets.only(top: 8, left: 10, right: 10),
-          child: Card(
-            child: Container(
-              margin: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  Text("Magnitud ${model.events![index].magnitude}"),
-                  Text("Profundidad: ${model.events![index].depth}"),
-                  Text("Fecha: ${model.events![index].utcDate}"),
-
-                  // Text("Url: ${model.events![index].url}"),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   Widget _buildLoading() => const Center(
           child: CircularProgressIndicator(
         color: Colors.white,

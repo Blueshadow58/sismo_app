@@ -5,7 +5,7 @@ import 'package:sismo_app/Earthquake/ui/screen/map_sample.dart';
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({super.key});
 
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Sismo App';
 
   @override
   Widget build(BuildContext context) {
