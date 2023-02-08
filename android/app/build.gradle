@@ -50,7 +50,12 @@ if (flutterMinSdkVersion == null) {
 
 def flutterTargetSdkVersion = localProperties.getProperty('flutter.targetSdkVersion')
 if (flutterTargetSdkVersion == null) {
-    flutterTargetSdkVersion = '28'
+    flutterTargetSdkVersion = '30'
+}
+
+def flutterCompileSdkVersion = localProperties.getProperty('flutter.compileSdkVersion')
+if (flutterCompileSdkVersion == null) {
+    flutterCompileSdkVersion = '33'
 }
 
 apply plugin: 'com.android.application'
@@ -71,6 +76,7 @@ def GOOGLE_MAPS_API_KEY = properties.getProperty('GOOGLE_MAPS_API_KEY')
 android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+    
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -87,16 +93,17 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.sismo_app"
+        applicationId "com.sismo_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        
+        compileSdkVersion flutterCompileSdkVersion.toInteger()
         minSdkVersion flutterMinSdkVersion.toInteger()
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
         manifestPlaceholders['MAPS_API_KEY'] =  mapsApiKey
+        
 
     }
 
@@ -107,11 +114,19 @@ android {
            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
            storePassword keystoreProperties['storePassword']
        }
+        debug {                        
+             keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+           storePassword keystoreProperties['storePassword']
+            
+        }
    }
    buildTypes {
        release {
            signingConfig signingConfigs.release
        }
+     
    }
 
 }
@@ -123,6 +138,6 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.android.material:material:1.1.0'
-    implementation "androidx.multidex:multidex:2.0.1"
-
+    // implementation "androidx.multidex:multidex:2.0.1"
+    
 }

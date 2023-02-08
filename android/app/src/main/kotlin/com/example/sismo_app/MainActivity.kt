@@ -1,4 +1,4 @@
-package com.example.sismo_app
+package com.sismo_app
 
 import io.flutter.embedding.android.FlutterActivity
 
